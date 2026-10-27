@@ -1,0 +1,19 @@
+# eBPF 빌드 산출물 — clang 이 매번 생성한다
+*.o
+*.ll
+*.bc
+
+# bpftool 로 뽑는 커널 타입 헤더. 커널마다 달라지므로 추적하지 않는다
+bpf/vmlinux.h
+
+# Go 제어부(4단계) 산출물 자리
+/bin/
+/cmd/**/debug
+*.test
+
+# 편집기 · OS
+*.swp
+*~
+.vscode/
+.idea/
+.DS_Store
