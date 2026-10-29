@@ -28,6 +28,11 @@
  * 재접속으로 포트가 바뀌어도 같은 백엔드로 간다.
  * 부수 효과로 IP 단편화도 자동 해결된다 — 모든 조각이 같은 키가 된다(10번).
  *
+ * 키에 L4 가 없으므로 전달 판정도 L4 를 보지 않는다. 등록된 출발지가 VIP 로
+ * 보낸 IP 패킷이면 프로토콜과 무관하게 백엔드로 넘긴다. IPv6 단편의 후속
+ * 조각은 L4 를 알아낼 방법이 아예 없으므로(RFC 8200 4.5) 이 편이 구조적으로
+ * 안전하다 — 조각 간 결론이 갈릴 자리가 없다.
+ *
  * 듀얼스택을 맵 하나로 다루려고 주소를 16바이트 고정으로 둔다(8번).
  * IPv4 는 앞 4바이트만 쓰고 나머지는 0이다.
  */
@@ -56,13 +61,15 @@ enum lb_stat {
 	LB_STAT_REDIRECT,   /* MAC 변경 후 egress 로 되돌림 */
 	LB_STAT_MISS,	    /* 배정표에 없음 — 폴백은 다음 단계 */
 	LB_STAT_NOT_IP,	    /* IPv4/IPv6 가 아님 (ARP 등) */
-	LB_STAT_NOT_L4,	    /* TCP/UDP 가 아님 (ICMP 등) */
+	LB_STAT_PROTO_OTHER,/* TCP/UDP 가 아님 — 관측용, 전달은 한다 */
 	LB_STAT_INACTIVE,   /* 배정은 있으나 백엔드가 비활성 */
 	LB_STAT_MALFORMED,  /* 헤더가 잘렸거나 ihl 이 비정상 */
 	LB_STAT_STORE_FAIL, /* MAC 쓰기 실패 */
 	LB_STAT_VLAN,	    /* 인라인 VLAN 태그를 건너뛴 패킷 */
 	LB_STAT_EXTHDR,	    /* IPv6 확장헤더를 따라간 패킷 */
-	LB_STAT_EXTHDR_DEEP,/* 확장헤더 상한 초과 — 통과시킴 */
+	LB_STAT_EXTHDR_DEEP,/* 확장헤더 상한 초과 — 관측용 */
+	LB_STAT_FRAG_LATER, /* IPv6 후속 조각 — 관측용 */
+	LB_STAT_ND,	    /* IPv6 ND — 주소 해석은 커널이 한다 */
 	LB_STAT__MAX,
 };
 

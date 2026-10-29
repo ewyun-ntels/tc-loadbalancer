@@ -1,0 +1,110 @@
+{
+  "version": 1,
+  "generation": 1,
+  "backends": [
+    {
+      "id": "be-0",
+      "ipv4": "192.0.2.130",
+      "ipv6": "2001:db8:1::82",
+      "health_port": 8080
+    },
+    {
+      "id": "be-1",
+      "ipv4": "192.0.2.131",
+      "ipv6": "2001:db8:1::83",
+      "health_port": 8080
+    },
+    {
+      "id": "be-2",
+      "ipv4": "192.0.2.132",
+      "ipv6": "2001:db8:1::84",
+      "health_port": 8080
+    }
+  ],
+  "assignments": [
+    {
+      "source": "198.51.100.10",
+      "primary_vip": "192.0.2.10",
+      "secondary_vip": "192.0.2.11",
+      "primary_backend": "be-2",
+      "secondary_backend": "be-0"
+    },
+    {
+      "source": "198.51.100.11",
+      "primary_vip": "192.0.2.10",
+      "secondary_vip": "192.0.2.11",
+      "primary_backend": "be-0",
+      "secondary_backend": "be-2"
+    },
+    {
+      "source": "198.51.100.12",
+      "primary_vip": "192.0.2.10",
+      "secondary_vip": "192.0.2.11",
+      "primary_backend": "be-1",
+      "secondary_backend": "be-0"
+    },
+    {
+      "source": "198.51.100.13",
+      "primary_vip": "192.0.2.10",
+      "secondary_vip": "192.0.2.11",
+      "primary_backend": "be-0",
+      "secondary_backend": "be-1"
+    },
+    {
+      "source": "198.51.100.14",
+      "primary_vip": "192.0.2.10",
+      "secondary_vip": "192.0.2.11",
+      "primary_backend": "be-1",
+      "secondary_backend": "be-2"
+    },
+    {
+      "source": "198.51.100.15",
+      "primary_vip": "192.0.2.10",
+      "secondary_vip": "192.0.2.11",
+      "primary_backend": "be-2",
+      "secondary_backend": "be-1"
+    },
+    {
+      "source": "2001:db8:2::10",
+      "primary_vip": "2001:db8:1::a",
+      "secondary_vip": "2001:db8:1::b",
+      "primary_backend": "be-2",
+      "secondary_backend": "be-0"
+    },
+    {
+      "source": "2001:db8:2::11",
+      "primary_vip": "2001:db8:1::a",
+      "secondary_vip": "2001:db8:1::b",
+      "primary_backend": "be-0",
+      "secondary_backend": "be-2"
+    },
+    {
+      "source": "2001:db8:2::12",
+      "primary_vip": "2001:db8:1::a",
+      "secondary_vip": "2001:db8:1::b",
+      "primary_backend": "be-1",
+      "secondary_backend": "be-0"
+    },
+    {
+      "source": "2001:db8:2::13",
+      "primary_vip": "2001:db8:1::a",
+      "secondary_vip": "2001:db8:1::b",
+      "primary_backend": "be-0",
+      "secondary_backend": "be-1"
+    },
+    {
+      "source": "2001:db8:2::14",
+      "primary_vip": "2001:db8:1::a",
+      "secondary_vip": "2001:db8:1::b",
+      "primary_backend": "be-1",
+      "secondary_backend": "be-2"
+    },
+    {
+      "source": "2001:db8:2::15",
+      "primary_vip": "2001:db8:1::a",
+      "secondary_vip": "2001:db8:1::b",
+      "primary_backend": "be-2",
+      "secondary_backend": "be-1"
+    }
+  ]
+}

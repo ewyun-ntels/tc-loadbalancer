@@ -1,0 +1,17 @@
+{
+  "interface": "net1",
+  "object": "bpf/lb_kern.o",
+  "pin_path": "/sys/fs/bpf/tc-lb-net1",
+  "lock_file": "/run/tc-lb-net1.lock",
+  "listen": "127.0.0.1:9090",
+  "backend_prefixes": ["192.0.2.128/26", "2001:db8:1::80/122"],
+  "forbidden_prefixes": ["192.0.2.192/26", "2001:db8:1::c0/122"],
+  "health": {"interval": "2s", "timeout": "500ms", "fall": 3},
+  "bird": {
+    "config_file": "/etc/tc-lb/bird.conf",
+    "socket": "/run/bird/bird.ctl",
+    "ipv4_protocols": ["tc_vips4"],
+    "ipv6_protocols": ["tc_vips6"],
+    "drain": "2s"
+  }
+}

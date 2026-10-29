@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "generation": 1,
+  "backends": [
+    {"id": "be-0", "ipv4": "192.0.2.130", "ipv6": "2001:db8:1::82", "health_port": 8080},
+    {"id": "be-1", "ipv4": "192.0.2.131", "ipv6": "2001:db8:1::83", "health_port": 8080},
+    {"id": "be-2", "ipv4": "192.0.2.132", "ipv6": "2001:db8:1::84", "health_port": 8080}
+  ],
+  "vip_pairs": [
+    {"primary": "192.0.2.10", "secondary": "192.0.2.11"},
+    {"primary": "2001:db8:1::a", "secondary": "2001:db8:1::b"}
+  ],
+  "clients": [
+    {"id": "system-a", "addresses": ["198.51.100.10", "2001:db8:2::10"]},
+    {"id": "system-b", "addresses": ["198.51.100.11", "2001:db8:2::11"]},
+    {"id": "system-c", "addresses": ["198.51.100.12", "2001:db8:2::12"]},
+    {"id": "system-d", "addresses": ["198.51.100.13", "2001:db8:2::13"]},
+    {"id": "system-e", "addresses": ["198.51.100.14", "2001:db8:2::14"]},
+    {"id": "system-f", "addresses": ["198.51.100.15", "2001:db8:2::15"]}
+  ]
+}

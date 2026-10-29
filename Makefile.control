@@ -1,0 +1,10 @@
+# Go control-plane targets; the existing C Makefile is unchanged.
+GO ?= go
+.PHONY: build test check
+build:
+	mkdir -p bin
+	$(GO) build -buildvcs=false -trimpath -o bin/ ./cmd/...
+test:
+	$(GO) test ./...
+check:
+	$(GO) vet ./...
